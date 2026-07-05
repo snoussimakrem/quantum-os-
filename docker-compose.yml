@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: docker/api/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      ENVIRONMENT: development
+      DEBUG: "true"
+    volumes:
+      - ./backend:/app
+    command: uvicorn quantum_os.main:app --host 0.0.0.0 --port 8000 --reload
